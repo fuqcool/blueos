@@ -1,0 +1,80 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-size: 100%;
+}
+
+#wallpaper {
+    height: 100%;
+    background-color: grey;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hide {
+    display: none;
+}
+
+#desktopPopup {
+    width: 250px;
+    position: absolute;
+}
+
+.app-iframe {
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+}
+
+.ui-dialog .ui-dialog-content {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+#dock {
+    width: 65px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    border-right: 1px solid rgb(82, 82, 82);
+    -webkit-box-shadow: 3px 0px 10px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    3px 0px 10px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         3px 0px 10px 0px rgba(50, 50, 50, 0.75);
+}
+
+#dock .cover {
+    opacity: 0.9;
+    background-color: #575757;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0; 
+}
+
+#dock .icons {
+    position: relative;
+    padding: 3px;
+}
+
+#dock .appicon {
+    padding: 1px;
+}
+
+#dock .appicon:hover {
+    border: 1px solid gray;
+    border-radius: 3px;
+    background-color: #4D4D4D;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+}
