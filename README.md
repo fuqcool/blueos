@@ -6,4 +6,4 @@ As a course project for Web Development(CS5610), BlueOS is designed to be a plat
 ### Developer
 
 - Qiang Fu (fuqcool@gmail.com)
-- Yang Ye ()
+- Yang Ye (yeyang1990@gmail.com)
