@@ -1,4 +1,4 @@
-blueos.module('wallpaperSetting', function (exports, require, module) {
+ferret.module('wallpaperSetting', function (exports, require, module) {
   var FormApplication = require('FormApplication');
 
   var template = '<ul>' +

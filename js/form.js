@@ -1,4 +1,4 @@
-blueos.module('Form', function (exports, require, module) {
+ferret.module('Form', function (exports, require, module) {
   var template = '<div class="dialog"></div>';
 
   function Form(options) {

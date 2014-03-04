@@ -1,0 +1,15 @@
+{
+  "name": "bower-ferret",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib",
+    "spec"
+  ],
+  "dependencies": {
+    "jquery": "latest",
+    "jquery-ui": "latest",
+    "bower-ferret": "latest"
+  }
+}

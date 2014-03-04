@@ -1,4 +1,4 @@
-﻿blueos.module('blueos.api.wallpaper', function (exports, require, module) {
+﻿ferret.module('blueos.api.wallpaper', function (exports, require, module) {
     var $wallpaper = $('#wallpaper');
 
     function setBackground(imgUrl) {

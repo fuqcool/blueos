@@ -1,4 +1,4 @@
-blueos.module('main', function (exports, require, module) {
+ferret.module('main', function (exports, require, module) {
     window.id = 'blueos';
 
     function main() {
@@ -21,4 +21,6 @@ blueos.module('main', function (exports, require, module) {
     module.exports = main;
 });
 
-blueos.require('main')();
+ferret.use('main', function (main) {
+  main();
+});

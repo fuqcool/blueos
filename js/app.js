@@ -1,4 +1,4 @@
-blueos.module('FormApplication', function (exports, require, module) {
+ferret.module('FormApplication', function (exports, require, module) {
     var Form = require('Form');
 
     function FormApplication(options) {
