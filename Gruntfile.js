@@ -11,6 +11,9 @@ module.exports = function (grunt) {
     concat: {
     },
     less: {
+      css: {
+        files: { "css/blueos.css": "less/*.less" }
+      }
     }
   });
 
