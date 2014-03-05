@@ -83,9 +83,9 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     var $titlebar = this._dialog.parent().find('.ui-dialog-titlebar');
     $titlebar.find('button').remove();
     $titlebar.append('<div class="dialog-btns">' +
-              '<button class="btn-close">X</button>' +
               '<button class="btn-minimize">-</button>' +
               '<button class="btn-maximize">[]</button>' +
+              '<button class="btn-close">X</button>' +
               '<div>');
 
     $titlebar.find('.btn-close').click(function () {
@@ -97,10 +97,12 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     });
 
     $titlebar.on('click', '.btn-maximize', function () {
+      $(this).removeClass('btn-maximize').addClass('btn-restore');
       that.maximize();
     });
 
     $titlebar.on('click', '.btn-restore', function () {
+      $(this).addClass('btn-maximize').removeClass('btn-restore');
       that.restore();
     });
 
@@ -123,15 +125,33 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
   GUIApplication.prototype.maximize = function () {
     var $dock = $('#dock');
 
-    this._dialog.dialog('option', 'position', [$dock.width() + 2, 0]);
-
+    var top = 0;
+    var left = $dock.width() + 2;
     var contentWidth = $(document).width() - $dock.width() - 2;
     var contentHeight = $(document).height();
 
-    this._dialog.parent().addClass('maximize');
+    this.height = this._dialog.dialog('option', 'height');
+    this.width = this._dialog.dialog('option', 'width');
+    this.top = this._dialog.parent().css('top');
+    this.left = this._dialog.parent().css('left');
 
-    this._dialog.dialog('option', 'width', contentWidth);
-    this._dialog.dialog('option', 'height', contentHeight);
+    this._dialog.parent().addClass('maximize')
+      .css({
+        top: top,
+        left: left,
+        width: contentWidth,
+        height: contentHeight
+      });
+  };
+
+  GUIApplication.prototype.restore = function () {
+    this._dialog.parent().removeClass('maximize')
+      .css({
+        top: this.top,
+        left: this.left,
+        width: this.width,
+        height: this.height
+      });
   };
 
   module.exports = GUIApplication;

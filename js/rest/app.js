@@ -13,5 +13,18 @@ ferret.module('blueos.rest.app', function (exports, require, module) {
     })
   }
 
+  function query(data, cb) {
+    http({
+      type: 'get',
+      dataType: 'json',
+      url: '/rest/apps',
+      data: data,
+      success: function (response) {
+        cb(response);
+      }
+    });
+  }
+
   exports.get = get;
+  exports.query = query;
 });

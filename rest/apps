@@ -1,0 +1,10 @@
+[
+  {
+    "name": "wallpaper",
+    "title": "Wallpaper",
+    "url": "wallpaper/",
+    "icon": "icon.png",
+    "height": 600,
+    "width": 800
+  }
+]

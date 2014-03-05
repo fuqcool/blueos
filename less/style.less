@@ -58,6 +58,7 @@ body {
     }
 
     .ui-dialog-titlebar {
+        font-weight: normal;
         padding: 5px 10px;
         border: none;
         border-radius: 0;
@@ -98,11 +99,18 @@ body {
 
     .appicon {
         padding: 1px;
-        &:hover {
-            border: 1px solid gray;
-            border-radius: 3px;
-            background-color: #4D4D4D;
+        border-radius: 3px;
+
+        &.running, &.running:hover {
             padding: 0;
+            border: none;
+            background-color: white;
+        }
+
+        &:hover {
+            padding: 0;
+            border: 1px solid gray;
+            background-color: #4D4D4D;
         }
     }
 }
