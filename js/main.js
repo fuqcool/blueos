@@ -1,26 +1,22 @@
 ferret.module('main', function (exports, require, module) {
+
+  function main() {
     window.id = 'blueos';
+    var api = require('blueos.api');
+    var app = require('blueos.app');
 
-    function main() {
-        var api = require('blueos.api');
+    // set default wallpaper
+    api.wallpaper.setBackground('wallpaper/images/maple.jpg');
 
-        // set default wallpaper
-        api.wallpaper.setBackground('wallpaper/images/maple.jpg');
+    $('#launch').click(function () {
+      var $el = $(this);
+      app.run($el.attr('app-name').trim());
+    });
+  }
 
-        $('#launch').click(function () {
-            api.application.run({
-                title: 'Wallpaper Settings',
-                url: 'wallpaper/wallpaper.html',
-                name: 'wallper-setting',
-                height: 600,
-                width: 800
-            });
-        });
-    }
-
-    module.exports = main;
+  module.exports = main;
 });
 
-ferret.use('main', function (main) {
+ferret.use(['main'], function (main) {
   main();
 });
