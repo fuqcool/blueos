@@ -96,8 +96,12 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
       that.hide();
     });
 
-    $titlebar.find('.btn-maximize').click(function () {
-      // maximize
+    $titlebar.on('click', '.btn-maximize', function () {
+      that.maximize();
+    });
+
+    $titlebar.on('click', '.btn-restore', function () {
+      that.restore();
     });
 
     this._dialog.html('<iframe class="app-iframe" width="100%" height="100%" frameborder="0" src="' + this.url + '"></iframe>');
@@ -114,6 +118,20 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
 
   GUIApplication.prototype.show = function () {
     this._dialog.parent().show();
+  };
+
+  GUIApplication.prototype.maximize = function () {
+    var $dock = $('#dock');
+
+    this._dialog.dialog('option', 'position', [$dock.width() + 2, 0]);
+
+    var contentWidth = $(document).width() - $dock.width() - 2;
+    var contentHeight = $(document).height();
+
+    this._dialog.parent().addClass('maximize');
+
+    this._dialog.dialog('option', 'width', contentWidth);
+    this._dialog.dialog('option', 'height', contentHeight);
   };
 
   module.exports = GUIApplication;
