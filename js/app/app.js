@@ -45,6 +45,40 @@ ferret.module('blueos.app', function (exports, require, module) {
     }
   }
 
+  // global drag
+  var dragging = false;
+  var element;
+  var x, y;
+
+  document.body.onmousedown = function (evt) {
+    var dialogs = $(evt.target).parents('.dialog');
+    if (dialogs.length) {
+      dialogs.addClass('dragging');
+      element = dialogs[0];
+      dragging = true;
+      x = evt.clientX;
+      y = evt.clientY;
+    }
+  };
+
+  document.body.onmouseup = function () {
+    $(element).removeClass('dragging');
+    dragging = false;
+  };
+
+  document.body.onmousemove = function (evt) {
+    if (dragging) {
+      element.style.left = ((parseInt(element.style.left) || 0) + evt.clientX - x) + 'px',
+      element.style.top = ((parseInt(element.style.top) || 0) + evt.clientY - y) + 'px'
+
+      x = evt.clientX;
+      y = evt.clientY;
+
+      evt.preventDefault();
+      evt.stopPropagation();
+    }
+  };
+
   exports.run = run;
   exports.terminate = terminate;
 });
@@ -59,13 +93,13 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     '      <div class="clear"></div>' +
     '    </div>' +
     '  </div>' +
-    '  <div class="dialog-content"></content>' +
+    '  <div class="dialog-body">' +
+    '    <div class="dialog-content"></div>' +
+    '    <div class="dialog-cover"></div>' +
+    '  </div>' +
     '</div>';
 
   var app = require('blueos.app');
-
-  // GUI app
-  // var template = '<div class="dialog"></div>';
 
   function GUIApplication(options) {
     this.url = options.url || '';
@@ -82,25 +116,30 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     this._dialog = $(template);
 
     this._dialog.find('.dialog-title').text(this.title);
-    this._dialog.css({
-      height: this.height,
-      width: this.width
-    });
+
     this._dialog.find('.dialog-menu').html(
       '<button class="btn-minimize">-</button>' +
         '<button class="btn-maximize">[]</button>' +
         '<button class="btn-close">X</button>'
     );
     this._dialog.find('.dialog-content').html(
-      '<embed class="app-iframe" width="100%" height="100%" frameborder="0" src="' + this.url + '"></embed>');
+      '<iframe class="app-iframe" width="100%" height="100%" frameborder="0" src="' + this.url + '"></iframe>');
     this._dialog.find('.dialog-title').css({
       'background-image': 'url(' + this.options.name + '/' + this.options.icon + ')',
       left: 25
     });
-    this._dialog.draggable().resizable();
-
+    this._dialog.hide();
 
     $('#wallpaper').append(this._dialog);
+
+    var frame = this._dialog.find('iframe')[0].contentWindow;
+    frame.onload = function () {
+      that._dialog.find('.dialog-body').css({
+        height: $(frame.document.body).innerHeight(),
+        width: $(frame.document).innerWidth()
+      });
+      that._dialog.show();
+    };
   };
 
   GUIApplication.prototype.run = function () {
