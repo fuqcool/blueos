@@ -45,12 +45,13 @@ ferret.module('blueos.app', function (exports, require, module) {
     }
   }
 
-  // global drag
   var dragging = false;
   var element;
   var x, y;
 
   document.body.onmousedown = function (evt) {
+    if (evt.which !== 1) return;
+
     var dialogs = $(evt.target).parents('.dialog');
     if (dialogs.length) {
       dialogs.addClass('dragging');
@@ -115,19 +116,55 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
 
     this._dialog = $(template);
 
+    this._dialog.mousedown(function (evt) {
+      if (evt.which !== 1) return;
+      that._dialog.addClass('dragging active');
+    }).mouseup(function () {
+      that._dialog.removeClass('dragging');
+    });
     this._dialog.find('.dialog-title').text(this.title);
 
     this._dialog.find('.dialog-menu').html(
-      '<button class="btn-minimize">-</button>' +
-        '<button class="btn-maximize">[]</button>' +
-        '<button class="btn-close">X</button>'
-    );
-    this._dialog.find('.dialog-content').html(
-      '<iframe class="app-iframe" width="100%" height="100%" frameborder="0" src="' + this.url + '"></iframe>');
-    this._dialog.find('.dialog-title').css({
-      'background-image': 'url(' + this.options.name + '/' + this.options.icon + ')',
-      left: 25
+      '<i class="glyphicon-minus glyphicon btn-minimize"></i>' +
+        '<i class="glyphicon-plus glyphicon btn-maximize"></i>' +
+        '<i class="glyphicon-remove glyphicon btn-close"></i>'
+    ).mousedown(function (evt) {
+      evt.preventDefault();
+      evt.stopPropagation();
     });
+
+    this._dialog.find('.btn-close').click(function (evt) {
+      app.terminate(that.name);
+      evt.preventDefault();
+      evt.stopPropagation();
+    });
+
+    this._dialog.find('.btn-minimize').click(function (evt) {
+      that.hide();
+      evt.preventDefault();
+      evt.stopPropagation();
+    });
+
+    this._dialog.on('click', '.btn-maximize', function (evt) {
+      $(this).removeClass('btn-maximize').addClass('btn-restore');
+      that.maximize();
+      evt.preventDefault();
+      evt.stopPropagation();
+    });
+
+    this._dialog.on('click', '.btn-restore', function (evt) {
+      $(this).addClass('btn-maximize').removeClass('btn-restore');
+      that.restore();
+      evt.preventDefault();
+      evt.stopPropagation();
+    });
+
+    this._dialog.find('.dialog-content').html(
+      '<iframe class="app-iframe" frameborder="0" src="' + this.url + '"></iframe>');
+    this._dialog.find('.dialog-title').css({
+      'background-image': 'url(' + this.options.name + '/' + this.options.icon + ')'
+    });
+
     this._dialog.hide();
 
     $('#wallpaper').append(this._dialog);
@@ -135,8 +172,8 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     var frame = this._dialog.find('iframe')[0].contentWindow;
     frame.onload = function () {
       that._dialog.find('.dialog-body').css({
-        height: $(frame.document.body).innerHeight(),
-        width: $(frame.document).innerWidth()
+        height: $(frame.document).height(),
+        width: $(frame.document).width()
       });
       that._dialog.show();
     };
@@ -149,68 +186,56 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     }
 
     this.initDialog();
-    // $titlebar.find('.btn-close').click(function () {
-    //   app.terminate(that.name);
-    // });
-
-    // $titlebar.find('.btn-minimize').click(function () {
-    //   that.hide();
-    // });
-
-    // $titlebar.on('click', '.btn-maximize', function () {
-    //   $(this).removeClass('btn-maximize').addClass('btn-restore');
-    //   that.maximize();
-    // });
-
-    // $titlebar.on('click', '.btn-restore', function () {
-    //   $(this).addClass('btn-maximize').removeClass('btn-restore');
-    //   that.restore();
-    // });
   };
 
-  // GUIApplication.prototype.terminate = function () {
-  //   this._dialog.dialog('destroy').remove();
-  // };
+  GUIApplication.prototype.terminate = function () {
+    var that = this;
+    this._dialog.animate({
+      opacity: 0
+    }, 200, 'swing', function () {
+      that._dialog.remove();
+    });
+  };
 
-  // GUIApplication.prototype.hide = function () {
-  //   this._dialog.parent().hide();
-  // };
+  GUIApplication.prototype.hide = function () {
+    this._dialog.hide();
+  };
 
-  // GUIApplication.prototype.show = function () {
-  //   this._dialog.parent().show();
-  // };
+  GUIApplication.prototype.show = function () {
+    this._dialog.show();
+  };
 
-  // GUIApplication.prototype.maximize = function () {
-  //   var $dock = $('#dock');
+  GUIApplication.prototype.maximize = function () {
+    var $dock = $('#dock');
 
-  //   var top = 0;
-  //   var left = $dock.width() + 2;
-  //   var contentWidth = $(document).width() - $dock.width() - 2;
-  //   var contentHeight = $(document).height();
+    var top = 0;
+    var left = $dock.outerWidth();
+    var contentWidth = $(document).width() - $dock.outerWidth() - 2;
+    var contentHeight = $(document).height();
 
-  //   this.height = this._dialog.dialog('option', 'height');
-  //   this.width = this._dialog.dialog('option', 'width');
-  //   this.top = this._dialog.parent().css('top');
-  //   this.left = this._dialog.parent().css('left');
+    this.height = this._dialog.height();
+    this.width = this._dialog.width();
+    this.top = this._dialog.position().top;
+    this.left = this._dialog.position().left;
 
-  //   this._dialog.parent().addClass('maximize')
-  //     .css({
-  //       top: top,
-  //       left: left,
-  //       width: contentWidth,
-  //       height: contentHeight
-  //     });
-  // };
+    this._dialog.addClass('maximize')
+      .animate({
+        top: top,
+        left: left,
+        width: contentWidth,
+        height: contentHeight
+      }, 200);
+  };
 
-  // GUIApplication.prototype.restore = function () {
-  //   this._dialog.parent().removeClass('maximize')
-  //     .css({
-  //       top: this.top,
-  //       left: this.left,
-  //       width: this.width,
-  //       height: this.height
-  //     });
-  // };
+  GUIApplication.prototype.restore = function () {
+    this._dialog.removeClass('maximize')
+      .animate({
+        top: this.top,
+        left: this.left,
+        width: this.width,
+        height: this.height
+      }, 300);
+  };
 
   module.exports = GUIApplication;
 });
