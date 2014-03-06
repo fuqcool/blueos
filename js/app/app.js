@@ -53,8 +53,11 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
   var template = '' +
     '<div class="dialog">' +
     '  <div class="dialog-head">' +
-    '    <div class="dialog-title"></div>' +
-    '    <div class="dialog-menu"></div>' +
+    '    <div class="dialog-headbar">' +
+    '      <div class="dialog-title"></div>' +
+    '      <div class="dialog-menu"></div>' +
+    '      <div class="clear"></div>' +
+    '    </div>' +
     '  </div>' +
     '  <div class="dialog-content"></content>' +
     '</div>';
@@ -94,7 +97,7 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
       'background-image': 'url(' + this.options.name + '/' + this.options.icon + ')',
       left: 25
     });
-    // this._dialog.draggable().resizable();
+    this._dialog.draggable().resizable();
 
 
     $('#wallpaper').append(this._dialog);

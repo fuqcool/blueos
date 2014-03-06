@@ -41,16 +41,33 @@ body {
     position: absolute;
     border-radius: 6px;
     background-color: white;
+    box-shadow: 2px 2px 15px 0px rgba(50, 50, 50, 0.75);
+
+    &.active {
+        box-shadow: 2px 2px 30 0px rgba(50, 50, 50, 0.75);
+    }
 
     .dialog-head {
-        height: 50px;
-        background: gray;
+        padding: 7px 7px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+
+        background: rgb(214,214,214);
+        background: linear-gradient(to bottom,  rgba(214,214,214,1) 0%,rgba(150,150,150,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6d6d6', endColorstr='#969696',GradientType=0 );
+
 
         .dialog-title {
             line-height: 25px;
             background-size: 25px;
             background-repeat:no-repeat;
-            padding-left: 25px;
+            padding-left: 28px;
+            float: left;
+            height: 25px;
+        }
+
+        .dialog-menu {
+            float: right;
         }
     }
 
@@ -161,4 +178,8 @@ body {
 
 img {
     max-width: 100%;
+}
+
+.clear {
+    clear: both;
 }
