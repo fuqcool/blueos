@@ -50,16 +50,19 @@ ferret.module('blueos.app', function (exports, require, module) {
 });
 
 ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
-  $.ui.dialog.prototype._makeDraggable = function() {
-    this.uiDialog.draggable({
-      containment: false
-    });
-  };
+  var template = '' +
+    '<div class="dialog">' +
+    '  <div class="dialog-head">' +
+    '    <div class="dialog-title"></div>' +
+    '    <div class="dialog-menu"></div>' +
+    '  </div>' +
+    '  <div class="dialog-content"></content>' +
+    '</div>';
 
   var app = require('blueos.app');
 
   // GUI app
-  var template = '<div class="dialog"></div>';
+  // var template = '<div class="dialog"></div>';
 
   function GUIApplication(options) {
     this.url = options.url || '';
@@ -70,89 +73,102 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     this.options = options;
   }
 
-  GUIApplication.prototype.run = function () {
+  GUIApplication.prototype.initDialog = function () {
     var that = this;
 
+    this._dialog = $(template);
+
+    this._dialog.find('.dialog-title').text(this.title);
+    this._dialog.css({
+      height: this.height,
+      width: this.width
+    });
+    this._dialog.find('.dialog-menu').html(
+      '<button class="btn-minimize">-</button>' +
+        '<button class="btn-maximize">[]</button>' +
+        '<button class="btn-close">X</button>'
+    );
+    this._dialog.find('.dialog-content').html(
+      '<embed class="app-iframe" width="100%" height="100%" frameborder="0" src="' + this.url + '"></embed>');
+    this._dialog.find('.dialog-title').css({
+      'background-image': 'url(' + this.options.name + '/' + this.options.icon + ')',
+      left: 25
+    });
+    // this._dialog.draggable().resizable();
+
+
+    $('#wallpaper').append(this._dialog);
+  };
+
+  GUIApplication.prototype.run = function () {
     if (this._dialog) {
       this.show();
       return;
     }
-    this._dialog = $(template).dialog(this.options);
 
-    // add customize buttons
-    var $titlebar = this._dialog.parent().find('.ui-dialog-titlebar');
-    $titlebar.find('button').remove();
-    $titlebar.append('<div class="dialog-btns">' +
-              '<button class="btn-minimize">-</button>' +
-              '<button class="btn-maximize">[]</button>' +
-              '<button class="btn-close">X</button>' +
-              '<div>');
+    this.initDialog();
+    // $titlebar.find('.btn-close').click(function () {
+    //   app.terminate(that.name);
+    // });
 
-    $titlebar.find('.btn-close').click(function () {
-      app.terminate(that.name);
-    });
+    // $titlebar.find('.btn-minimize').click(function () {
+    //   that.hide();
+    // });
 
-    $titlebar.find('.btn-minimize').click(function () {
-      that.hide();
-    });
+    // $titlebar.on('click', '.btn-maximize', function () {
+    //   $(this).removeClass('btn-maximize').addClass('btn-restore');
+    //   that.maximize();
+    // });
 
-    $titlebar.on('click', '.btn-maximize', function () {
-      $(this).removeClass('btn-maximize').addClass('btn-restore');
-      that.maximize();
-    });
-
-    $titlebar.on('click', '.btn-restore', function () {
-      $(this).addClass('btn-maximize').removeClass('btn-restore');
-      that.restore();
-    });
-
-    this._dialog.html('<iframe class="app-iframe" width="100%" height="100%" frameborder="0" src="' + this.url + '"></iframe>');
-    this._dialog.dialog('option', 'title', this.title);
+    // $titlebar.on('click', '.btn-restore', function () {
+    //   $(this).addClass('btn-maximize').removeClass('btn-restore');
+    //   that.restore();
+    // });
   };
 
-  GUIApplication.prototype.terminate = function () {
-    this._dialog.dialog('destroy').remove();
-  };
+  // GUIApplication.prototype.terminate = function () {
+  //   this._dialog.dialog('destroy').remove();
+  // };
 
-  GUIApplication.prototype.hide = function () {
-    this._dialog.parent().hide();
-  };
+  // GUIApplication.prototype.hide = function () {
+  //   this._dialog.parent().hide();
+  // };
 
-  GUIApplication.prototype.show = function () {
-    this._dialog.parent().show();
-  };
+  // GUIApplication.prototype.show = function () {
+  //   this._dialog.parent().show();
+  // };
 
-  GUIApplication.prototype.maximize = function () {
-    var $dock = $('#dock');
+  // GUIApplication.prototype.maximize = function () {
+  //   var $dock = $('#dock');
 
-    var top = 0;
-    var left = $dock.width() + 2;
-    var contentWidth = $(document).width() - $dock.width() - 2;
-    var contentHeight = $(document).height();
+  //   var top = 0;
+  //   var left = $dock.width() + 2;
+  //   var contentWidth = $(document).width() - $dock.width() - 2;
+  //   var contentHeight = $(document).height();
 
-    this.height = this._dialog.dialog('option', 'height');
-    this.width = this._dialog.dialog('option', 'width');
-    this.top = this._dialog.parent().css('top');
-    this.left = this._dialog.parent().css('left');
+  //   this.height = this._dialog.dialog('option', 'height');
+  //   this.width = this._dialog.dialog('option', 'width');
+  //   this.top = this._dialog.parent().css('top');
+  //   this.left = this._dialog.parent().css('left');
 
-    this._dialog.parent().addClass('maximize')
-      .css({
-        top: top,
-        left: left,
-        width: contentWidth,
-        height: contentHeight
-      });
-  };
+  //   this._dialog.parent().addClass('maximize')
+  //     .css({
+  //       top: top,
+  //       left: left,
+  //       width: contentWidth,
+  //       height: contentHeight
+  //     });
+  // };
 
-  GUIApplication.prototype.restore = function () {
-    this._dialog.parent().removeClass('maximize')
-      .css({
-        top: this.top,
-        left: this.left,
-        width: this.width,
-        height: this.height
-      });
-  };
+  // GUIApplication.prototype.restore = function () {
+  //   this._dialog.parent().removeClass('maximize')
+  //     .css({
+  //       top: this.top,
+  //       left: this.left,
+  //       width: this.width,
+  //       height: this.height
+  //     });
+  // };
 
   module.exports = GUIApplication;
 });

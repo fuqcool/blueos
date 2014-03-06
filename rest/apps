@@ -6,5 +6,13 @@
     "icon": "icon.png",
     "height": 600,
     "width": 800
+  },
+  {
+    "name": "taskmgr",
+    "title": "Task Manager",
+    "url": "taskmgr/",
+    "icon": "icon.png",
+    "height": 600,
+    "width": 400
   }
 ]

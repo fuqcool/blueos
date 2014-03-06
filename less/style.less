@@ -35,46 +35,77 @@ body {
     overflow: hidden;
 }
 
-.ui-dialog {
-    &.blur {
-        box-shadow: 4px 4px 15px 0px rgba(50, 50, 50, 0.75);
-    }
-
-    &.maximize {
-        border: none;
-        border-radius: 0;
-    }
-
-    box-shadow: 4px 4px 30px 0px rgba(50, 50, 50, 0.75);
-    border-radius: 6px;
+.dialog {
     border: 1px solid #ACA3A3;
     padding: 0;
+    position: absolute;
+    border-radius: 6px;
+    background-color: white;
 
-    .ui-dialog-content {
-        padding: 0;
-        border: 0;
-        margin: 0;
-        overflow: hidden;
+    .dialog-head {
+        height: 50px;
+        background: gray;
+
+        .dialog-title {
+            line-height: 25px;
+            background-size: 25px;
+            background-repeat:no-repeat;
+            padding-left: 25px;
+        }
     }
 
-    .ui-dialog-titlebar {
-        font-weight: normal;
-        padding: 5px 10px;
-        border: none;
-        border-radius: 0;
-
-        .ui-dialog-title {
-            width: 85%;
-        }
-
-        .dialog-btns {
-            float: right;
-        }
+    .dialog-content {
+        padding: 0;
+        overflow: hidden;
     }
 }
 
+/* .ui-dialog { */
+/*     &.blur { */
+/*         box-shadow: 4px 4px 15px 0px rgba(50, 50, 50, 0.75); */
+/*     } */
+
+/*     &.maximize { */
+/*         border: none; */
+/*         border-radius: 0; */
+/*     } */
+
+/*     box-shadow: 4px 4px 30px 0px rgba(50, 50, 50, 0.75); */
+/*     border-radius: 6px; */
+/*     border: 1px solid #ACA3A3; */
+/*     padding: 0; */
+
+/*     .ui-dialog-content { */
+/*         padding: 0; */
+/*         border: 0; */
+/*         margin: 0; */
+/*         overflow: hidden; */
+/*     } */
+
+/*     .ui-dialog-titlebar { */
+/*         font-weight: normal; */
+/*         padding: 5px 10px; */
+/*         border: none; */
+/*         border-radius: 0; */
+
+/*         .ui-dialog-title { */
+/*             display: inline-block; */
+/*             float: left; */
+/*             width: auto; */
+/*             line-height: 25px; */
+/*             background-size: 25px; */
+/*             background-repeat:no-repeat; */
+/*             padding-left: 28px; */
+/*         } */
+
+/*         .dialog-btns { */
+/*             float: right; */
+/*         } */
+/*     } */
+/* } */
+
 #dock {
-    width: 65px;
+    width: 70px;
     height: 100%;
     position: absolute;
     left: 0;
@@ -94,23 +125,35 @@ body {
 
     .icons {
         position: relative;
-        padding: 3px;
+        padding: 6px;
     }
 
     .appicon {
-        padding: 1px;
-        border-radius: 3px;
+        color: white;
+        position: relative;
 
-        &.running, &.running:hover {
-            padding: 0;
-            border: none;
-            background-color: white;
+        &:active {
+            padding: 1px;
         }
 
-        &:hover {
-            padding: 0;
-            border: 1px solid gray;
-            background-color: #4D4D4D;
+        &.running {
+            &:before {
+                display: block;
+                position: absolute;
+                left: -4px;
+                top: 27px;
+                height: 4px;
+                width: 4px;
+                background-color: white;
+                content: " ";
+                border-radius: 2px;
+                box-shadow: 0px 0px 3px 0px white;
+            }
+
+            /* &:active:before { */
+            /*     right: 5px; */
+            /*     top: 27px; */
+            /* } */
         }
     }
 }

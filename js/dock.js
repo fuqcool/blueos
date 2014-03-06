@@ -10,7 +10,7 @@ ferret.module('blueos.dock', function (exports, require, module) {
     if (ferret.isArray(data)) {
       var html = '';
       ferret.forEach(data, function (app) {
-        html += '<div class="appicon" app-name="' + app.name + '">' +
+        html += '<div class="appicon" title="' + app.title + '" app-name="' + app.name + '">' +
           '<img src="' + app.name + '/' + app.icon + '" />' +
           '</div>';
       });
