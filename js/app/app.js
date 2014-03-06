@@ -45,46 +45,14 @@ ferret.module('blueos.app', function (exports, require, module) {
     }
   }
 
-  var dragging = false;
-  var element;
-  var x, y;
-
-  document.body.onmousedown = function (evt) {
-    if (evt.which !== 1) return;
-
-    var dialogs = $(evt.target).parents('.dialog');
-    if (dialogs.length) {
-      dialogs.addClass('dragging');
-      element = dialogs[0];
-      dragging = true;
-      x = evt.clientX;
-      y = evt.clientY;
-    }
-  };
-
-  document.body.onmouseup = function () {
-    $(element).removeClass('dragging');
-    dragging = false;
-  };
-
-  document.body.onmousemove = function (evt) {
-    if (dragging) {
-      element.style.left = ((parseInt(element.style.left) || 0) + evt.clientX - x) + 'px',
-      element.style.top = ((parseInt(element.style.top) || 0) + evt.clientY - y) + 'px'
-
-      x = evt.clientX;
-      y = evt.clientY;
-
-      evt.preventDefault();
-      evt.stopPropagation();
-    }
-  };
-
   exports.run = run;
   exports.terminate = terminate;
 });
 
+
 ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
+  var event = require('core.event');
+
   var template = '' +
     '<div class="dialog">' +
     '  <div class="dialog-head">' +
@@ -117,11 +85,15 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     this._dialog = $(template);
 
     this._dialog.mousedown(function (evt) {
-      if (evt.which !== 1) return;
-      that._dialog.addClass('dragging active');
+      if (evt.which === 1) {
+        event.trigger('drag-start', that._dialog, evt.clientX, evt.clientY);
+        that._dialog.addClass('dragging active');
+      }
     }).mouseup(function () {
+      event.trigger('drag-stop');
       that._dialog.removeClass('dragging');
     });
+
     this._dialog.find('.dialog-title').text(this.title);
 
     this._dialog.find('.dialog-menu').html(
@@ -210,8 +182,8 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
 
     var top = 0;
     var left = $dock.outerWidth();
-    var contentWidth = $(document).width() - $dock.outerWidth() - 2;
-    var contentHeight = $(document).height();
+    var contentWidth = $(document).width() - $dock.outerWidth() - 3;
+    var contentHeight = $(document).height() - 2;
 
     this.height = this._dialog.height();
     this.width = this._dialog.width();
