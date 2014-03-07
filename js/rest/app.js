@@ -27,6 +27,15 @@ ferret.module('blueos.rest.app', function (exports, require, module) {
         "url": "calc/",
         "icon": "icon.png"
       });
+    } else if (name === 'map') {
+      cb({
+        "name": "map",
+        "title": "Google Map",
+        "url": "map/",
+        "icon": "icon.png",
+        "width": 500,
+        "height": 500
+      });
     }
 
     // http({
@@ -63,6 +72,14 @@ ferret.module('blueos.rest.app', function (exports, require, module) {
         "title": "Calculator",
         "url": "calc/",
         "icon": "icon.png"
+      },
+      {
+        "name": "map",
+        "title": "Google Map",
+        "url": "map/",
+        "icon": "icon.png",
+        "width": 500,
+        "height": 500
       }
     ]);
 

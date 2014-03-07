@@ -11,6 +11,7 @@ body {
     font-size: 100%;
     cursor: default;
     -webkit-user-select: none;
+    overflow: hidden;
 }
 
 #wallpaper {
@@ -78,10 +79,9 @@ body {
             line-height: 25px;
             background-size: 25px;
             background-repeat:no-repeat;
-            padding-left: 28px;
+            padding-left: 30px;
             float: left;
             height: 25px;
-            left: 25px;
         }
 
         .dialog-menu {
@@ -93,6 +93,8 @@ body {
         padding: 0;
         overflow: hidden;
         position: relative;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
 
         .dialog-content {
             height: 100%;
@@ -117,6 +119,7 @@ body {
     -webkit-box-shadow: 3px 0px 10px 0px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    3px 0px 10px 0px rgba(50, 50, 50, 0.75);
     box-shadow:         3px 0px 10px 0px rgba(50, 50, 50, 0.75);
+    z-index: 201;
 
     .cover {
         opacity: 0.9;

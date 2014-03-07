@@ -8,6 +8,6 @@ ferret.module('main', function (exports, require, module) {
   };
 });
 
-ferret.use(['main', 'blueos.dock', 'blueos.effect.dragging'], function (main) {
+ferret.use(['main', 'blueos.dock', 'blueos.effect.dragging', 'blueos.effect.layer'], function (main) {
   main();
 });

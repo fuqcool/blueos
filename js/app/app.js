@@ -49,7 +49,6 @@ ferret.module('blueos.app', function (exports, require, module) {
   exports.terminate = terminate;
 });
 
-
 ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
   var event = require('core.event');
 
@@ -77,6 +76,7 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     this.height = options.height;
     this.width = options.width;
     this.options = options;
+    this.type = 'gui';
   }
 
   GUIApplication.prototype.initDialog = function () {
@@ -87,6 +87,7 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     this._dialog.mousedown(function (evt) {
       if (evt.which === 1) {
         event.trigger('drag-start', that._dialog, evt.clientX, evt.clientY);
+        event.trigger('layer-tofront', that._dialog);
         that._dialog.addClass('dragging active');
       }
     }).mouseup(function () {
@@ -138,6 +139,7 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     });
 
     this._dialog.hide();
+    event.trigger('layer-add', this._dialog);
 
     $('#wallpaper').append(this._dialog);
 
@@ -165,6 +167,7 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     this._dialog.animate({
       opacity: 0
     }, 200, 'swing', function () {
+      event.trigger('layer-add', that._dialog.get(0));
       that._dialog.remove();
     });
   };
