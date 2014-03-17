@@ -16,6 +16,14 @@ ferret.module('blueos.dock', function (exports, require, module) {
       });
 
       $icons.append(html);
+      $icons.tooltip({
+        position: {
+          my: 'right-7 center-32'
+        },
+        tooltipClass: 'app-tooltip',
+        show: false,
+        hide: false
+      });
     }
   });
 
