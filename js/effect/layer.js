@@ -6,13 +6,13 @@ ferret.module('blueos.effect.layer', function (exports, require, module) {
   var MAX = 200;
 
   function add(el) {
-    layers.push(el);
+    layers.push($(el).get(0));
     updateIndex();
   }
 
   function remove(el) {
     layers = $.grep(layers, function (l) {
-      return l !== el;
+      return l !== $(el).get(0);
     });
     updateIndex();
   }
@@ -24,7 +24,7 @@ ferret.module('blueos.effect.layer', function (exports, require, module) {
     while (layers.length) {
       var l = layers.pop();
 
-      if (l === el) {
+      if (l === $(el).get(0)) {
         target = l;
         break;
       }
