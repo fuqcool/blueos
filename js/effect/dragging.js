@@ -1,4 +1,4 @@
-ferret.module('blueos.effect.dragging', function (exports, require, module) {
+ferret.module('blueos.effect.dragging', function (require, exports, module) {
   var event = require('core.event');
 
   var dragging = false;

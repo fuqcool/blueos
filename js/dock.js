@@ -1,4 +1,4 @@
-ferret.module('blueos.dock', function (exports, require, module) {
+ferret.module('blueos.dock', function (require, exports, module) {
   var appManager = require('blueos.app');
   var appRest = require('blueos.rest.app');
   var event = require('core.event');

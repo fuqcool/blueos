@@ -1,4 +1,4 @@
-ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
+ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
   var event = require('core.event');
 
   var template = '' +
