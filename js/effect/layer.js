@@ -1,4 +1,4 @@
-ferret.module('blueos.effect.layer', function (exports, require, module) {
+ferret.module('blueos.effect.layer', function (require, exports, module) {
   var event = require('core.event');
 
   var layers = [];

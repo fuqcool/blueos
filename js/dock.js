@@ -1,4 +1,4 @@
-ferret.module('blueos.dock', function (exports, require, module) {
+ferret.module('blueos.dock', function (require, exports, module) {
   var appManager = require('blueos.app');
   var appRest = require('blueos.rest.app');
   var event = require('core.event');
@@ -16,6 +16,14 @@ ferret.module('blueos.dock', function (exports, require, module) {
       });
 
       $icons.append(html);
+      $icons.tooltip({
+        position: {
+          my: 'right-7 center-32'
+        },
+        tooltipClass: 'app-tooltip',
+        show: false,
+        hide: false
+      });
     }
   });
 

@@ -1,4 +1,4 @@
-ferret.module('main', function (exports, require, module) {
+ferret.module('main', function (require, exports, module) {
   module.exports = function () {
     window.id = 'blueos';
     var api = require('blueos.api');

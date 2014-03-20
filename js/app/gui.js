@@ -1,4 +1,4 @@
-ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
+ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
   var event = require('core.event');
 
   var template = '' +
@@ -96,7 +96,10 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     this.$dialog.hide();
     this.$dialog.draggable({
       start: $.proxy(this.cover, this),
-      stop: $.proxy(this.uncover, this)
+      stop: $.proxy(this.uncover, this),
+      create: function () {
+        $(this).css({ position: 'absolute' });
+      }
     });
     this.$dialog.resizable({
       resize: $.proxy(this.adjustHeight, this),
@@ -116,6 +119,7 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
     frame.onload = function () {
       that.$dialog.width(400);
       that.$dialog.height(400);
+      that.$dialog.css(that.initPos());
       that.show();
       event.trigger('layer-add', that.$dialog);
       that.adjustHeight();
@@ -129,7 +133,6 @@ ferret.module('blueos.app.GUIApplication', function (exports, require, module) {
       top: $body.height() * 0.2
     };
 
-    console.log(pos);
     return pos;
   };
 

@@ -1,6 +1,4 @@
-ferret.module('blueos.rest.app', function (exports, require, module) {
-  var http = require('core.http');
-
+ferret.module('blueos.rest.app', function (require, exports, module) {
   function get(name, cb) {
     if (name === 'wallpaper') {
       cb({

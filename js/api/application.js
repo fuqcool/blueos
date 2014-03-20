@@ -1,4 +1,4 @@
-﻿ferret.module('blueos.api.application', function (exports, require, module) {
+﻿ferret.module('blueos.api.application', function (require, exports, module) {
     // var FormApplication = require('FormApplication');
     // var apps = {};
 

@@ -1,4 +1,4 @@
-ferret.module('blueos.app', function (exports, require, module) {
+ferret.module('blueos.app', function (require, exports, module) {
   var event = require('core.event');
   var appRest = require('blueos.rest.app');
   var GUIApplication = require('blueos.app.GUIApplication');

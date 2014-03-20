@@ -1,4 +1,4 @@
-blueos.module('desktopPopup', function (exports, require, module) {
+blueos.module('desktopPopup', function (require, exports, module) {
   var Application = require('Application');
 
   function run() {
