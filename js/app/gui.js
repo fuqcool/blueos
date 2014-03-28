@@ -69,6 +69,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
     });
 
     this.$head.find('.btn-minimize').click(function (evt) {
+      that.savePosition();
       event.trigger('app-minimize', that);
       evt.preventDefault();
       evt.stopPropagation();
@@ -119,10 +120,16 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
     frame.onload = function () {
       that.$dialog.width(400);
       that.$dialog.height(400);
+      that.$dialog.css('opacity', 0);
       that.$dialog.css(that.initPos());
-      that.show();
-      event.trigger('layer-add', that.$dialog);
+      that.$dialog.show();
       that.adjustHeight();
+
+      that.$dialog.animate({
+        opacity: 1
+      }, 250, function () {
+        event.trigger('layer-add', that.$dialog);
+      });
     };
   };
 
@@ -146,7 +153,10 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
 
   GUIApplication.prototype.run = function () {
     if (this.$dialog) {
-      this.show();
+      if (!this.$dialog.is(':visible')) {
+        event.trigger('app-restore', this);
+      }
+
       return;
     }
 
@@ -187,10 +197,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
     var contentWidth = $(document).width() - $dock.outerWidth() - 2;
     var contentHeight = $(document).height() - 2;
 
-    this.height = this.$dialog.height();
-    this.width = this.$dialog.width();
-    this.top = this.$dialog.position().top;
-    this.left = this.$dialog.position().left;
+    this.savePosition();
 
     var that = this;
     this.$dialog.addClass('maximize')
@@ -203,6 +210,13 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
         that.adjustHeight();
         that.disable();
       });
+  };
+
+  GUIApplication.prototype.savePosition = function () {
+    this.height = this.$dialog.height();
+    this.width = this.$dialog.width();
+    this.top = this.$dialog.position().top;
+    this.left = this.$dialog.position().left;
   };
 
   GUIApplication.prototype.restore = function () {

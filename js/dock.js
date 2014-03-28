@@ -46,6 +46,20 @@ ferret.module('blueos.dock', function (require, exports, module) {
     });
   });
 
+  event.listen('app-restore', function (app) {
+    var $icon = $icons.find('[app-name=' + app.name + ']');
+    var pos = $icon.position();
+    app.show();
+    app.$dialog.css('opacity', 0.1);
+    app.$dialog.animate({
+      top: app.top,
+      left: app.left,
+      height: app.height,
+      width: app.width,
+      opacity: 1
+    }, 250);
+  });
+
   event.listen('app-run', function (app) {
     $icons.find('[app-name=' + app.name + ']').addClass('running');
   });
