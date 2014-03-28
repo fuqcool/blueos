@@ -32,6 +32,20 @@ ferret.module('blueos.dock', function (require, exports, module) {
     appManager.run(name);
   });
 
+  event.listen('app-minimize', function (app) {
+    var $icon = $icons.find('[app-name=' + app.name + ']');
+    var pos = $icon.position();
+    app.$dialog.animate({
+      top: pos.top,
+      left: pos.left,
+      height: 50,
+      width: 50,
+      opacity: 0.1
+    }, 250, function () {
+      app.hide();
+    });
+  });
+
   event.listen('app-run', function (app) {
     $icons.find('[app-name=' + app.name + ']').addClass('running');
   });

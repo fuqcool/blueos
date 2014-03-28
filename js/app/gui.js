@@ -69,7 +69,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
     });
 
     this.$head.find('.btn-minimize').click(function (evt) {
-      that.hide();
+      event.trigger('app-minimize', that);
       evt.preventDefault();
       evt.stopPropagation();
     });
