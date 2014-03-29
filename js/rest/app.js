@@ -14,7 +14,7 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
         "name": "taskmgr",
         "title": "Task Manager",
         "url": "taskmgr/",
-        "height": 600,
+        "height": 450,
         "width": 400,
         "icon": "icon.png"
       });
@@ -23,7 +23,10 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
         "name": "calc",
         "title": "Calculator",
         "url": "calc/",
-        "icon": "icon.png"
+        "icon": "icon.png",
+        "height": 275,
+        "width": 325,
+        "resizable": false
       });
     } else if (name === 'map') {
       cb({
@@ -31,11 +34,20 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
         "title": "Google Map",
         "url": "map/",
         "icon": "icon.png",
-        "width": 500,
-        "height": 500
+        "width": 650,
+        "height": 450
+      });
+    } else if (name === 'calendar') {
+      cb({
+        "name": "calendar",
+        "title": "Calendar",
+        "url": "calendar/",
+        "icon": "icon.png",
+        "width": 360,
+        "height": 320,
+        "resizable": false
       });
     }
-
     // http({
     //   type: 'get',
     //   dataType: 'json',
@@ -61,7 +73,7 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
         "name": "taskmgr",
         "title": "Task Manager",
         "url": "taskmgr/",
-        "height": 600,
+        "height": 450,
         "width": 400,
         "icon": "icon.png"
       },
@@ -69,15 +81,27 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
         "name": "calc",
         "title": "Calculator",
         "url": "calc/",
-        "icon": "icon.png"
+        "icon": "icon.png",
+        "height": 275,
+        "width": 325,
+        "resizable": false
       },
       {
         "name": "map",
         "title": "Google Map",
         "url": "map/",
         "icon": "icon.png",
-        "width": 500,
-        "height": 500
+        "width": 650,
+        "height": 450
+      },
+      {
+        "name": "calendar",
+        "title": "Calendar",
+        "url": "calendar/",
+        "icon": "icon.png",
+        "width": 360,
+        "height": 320,
+        "resizable": false
       }
     ]);
 

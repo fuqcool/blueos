@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title> Calendar </title>
+
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+
+</head>
+
+<body>
+    <div id="calendar"></div>
+
+        <script>
+            $('#calendar').datepicker({
+                inline: true,
+                firstDay: 1,
+                showOtherMonths: true,
+                dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+            });
+    </script>
+</body>
+
+</html>

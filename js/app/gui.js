@@ -36,6 +36,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
     this.height = options.height;
     this.width = options.width;
     this.options = options;
+    this.resizable = (options.resizable == null) ? true : options.resizable;
     this.type = 'gui';
   }
 
@@ -102,13 +103,16 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
         $(this).css({ position: 'absolute' });
       }
     });
-    this.$dialog.resizable({
-      resize: $.proxy(this.adjustHeight, this),
-      start: $.proxy(this.cover, this),
-      stop: $.proxy(this.uncover, this),
-      minHeight: 200,
-      minWidth: 200
-    });
+
+    if (this.resizable) {
+      this.$dialog.resizable({
+        resize: $.proxy(this.adjustHeight, this),
+        start: $.proxy(this.cover, this),
+        stop: $.proxy(this.uncover, this),
+        minHeight: 200,
+        minWidth: 200
+      });
+    }
 
     $('#wallpaper').append(this.$dialog);
 
@@ -118,8 +122,8 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
     });
 
     frame.onload = function () {
-      that.$dialog.width(400);
-      that.$dialog.height(400);
+      that.$dialog.width(that.width || 400);
+      that.$dialog.height((that.height || 400) + 29);
       that.$dialog.css('opacity', 0);
       that.$dialog.css(that.initPos());
       that.$dialog.show();
