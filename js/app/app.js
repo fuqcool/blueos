@@ -28,10 +28,10 @@ ferret.module('blueos.app', function (require, exports, module) {
   function terminate(name) {
     var app = appCache[name];
     app.terminate();
-    event.trigger('app-terminate', app);
-    console.log('app terminate:', name);
-
     delete appCache[name];
+
+    console.log('app terminate:', name);
+    event.trigger('app-terminate', app);
   }
 
   function makeApp(options) {
@@ -45,7 +45,11 @@ ferret.module('blueos.app', function (require, exports, module) {
     }
   }
 
+  function getRunningApps() {
+    return appCache;
+  }
+
   exports.run = run;
   exports.terminate = terminate;
+  exports.getRunningApps = getRunningApps;
 });
-
