@@ -4,7 +4,7 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
       cb({
         "name": "wallpaper",
         "title": "Wallpaper",
-        "url": "wallpaper/",
+        "url": "apps/wallpaper/",
         "height": 600,
         "width": 800,
         "icon": "icon.png"
@@ -13,7 +13,7 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
       cb({
         "name": "taskmgr",
         "title": "Task Manager",
-        "url": "taskmgr/",
+        "url": "apps/taskmgr/",
         "height": 450,
         "width": 400,
         "icon": "icon.png"
@@ -22,7 +22,7 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
       cb({
         "name": "calc",
         "title": "Calculator",
-        "url": "calc/",
+        "url": "apps/calc/",
         "icon": "icon.png",
         "height": 275,
         "width": 325,
@@ -32,7 +32,7 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
       cb({
         "name": "map",
         "title": "Google Map",
-        "url": "map/",
+        "url": "apps/map/",
         "icon": "icon.png",
         "width": 650,
         "height": 450
@@ -41,7 +41,7 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
       cb({
         "name": "calendar",
         "title": "Calendar",
-        "url": "calendar/",
+        "url": "apps/calendar/",
         "icon": "icon.png",
         "width": 360,
         "height": 320,
@@ -64,7 +64,7 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
       {
         "name": "wallpaper",
         "title": "Wallpaper",
-        "url": "wallpaper/",
+        "url": "apps/wallpaper/",
         "height": 600,
         "width": 800,
         "icon": "icon.png"
@@ -72,7 +72,7 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
       {
         "name": "taskmgr",
         "title": "Task Manager",
-        "url": "taskmgr/",
+        "url": "apps/taskmgr/",
         "height": 450,
         "width": 400,
         "icon": "icon.png"
@@ -80,7 +80,7 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
       {
         "name": "calc",
         "title": "Calculator",
-        "url": "calc/",
+        "url": "apps/calc/",
         "icon": "icon.png",
         "height": 275,
         "width": 325,
@@ -89,7 +89,7 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
       {
         "name": "map",
         "title": "Google Map",
-        "url": "map/",
+        "url": "apps/map/",
         "icon": "icon.png",
         "width": 650,
         "height": 450
@@ -97,7 +97,7 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
       {
         "name": "calendar",
         "title": "Calendar",
-        "url": "calendar/",
+        "url": "apps/calendar/",
         "icon": "icon.png",
         "width": 360,
         "height": 320,

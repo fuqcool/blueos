@@ -4,7 +4,7 @@ ferret.module('main', function (require, exports, module) {
     var api = require('blueos.api');
 
     // set default wallpaper
-    api.wallpaper.setBackground('wallpaper/images/maple.jpg');
+    api.wallpaper.setBackground('apps/wallpaper/images/maple.jpg');
   };
 });
 

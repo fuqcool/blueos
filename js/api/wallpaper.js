@@ -2,7 +2,7 @@
     var $wallpaper = $('#wallpaper');
 
     function setBackground(imgUrl) {
-        $wallpaper.css('background-image', 'url(' + imgUrl + ')');
+      $wallpaper.css('background-image', 'url(' + imgUrl + ')');
     }
 
     module.exports = {

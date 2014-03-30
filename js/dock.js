@@ -11,7 +11,7 @@ ferret.module('blueos.dock', function (require, exports, module) {
       var html = '';
       ferret.forEach(data, function (app) {
         html += '<div class="appicon" title="' + app.title + '" app-name="' + app.name + '">' +
-          '<img src="' + app.name + '/' + app.icon + '" />' +
+          '<img src="' + app.url + app.icon + '" />' +
           '</div>';
       });
 
