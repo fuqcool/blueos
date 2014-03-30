@@ -1,0 +1,8 @@
+{
+    "name": "calendar",
+    "title": "Calendar",
+    "icon": "icon.png",
+    "width": 360,
+    "height": 320,
+    "resizable": false
+}
