@@ -15,7 +15,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
     '    </div>' +
     '  </div>' +
     '  <div class="dialog-body">' +
-    '    <iframe scrolling="no" frameborder="0" src="about:blank"></iframe>' +
+    '    <iframe frameborder="0" src="about:blank"></iframe>' +
     '    <div class="dialog-cover"></div>' +
     '  </div>' +
     '</div>';
