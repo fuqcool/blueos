@@ -20,7 +20,6 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
         url: 'rest/app',
         dataType: 'json',
         success: function (data) {
-            debugger;
             cb(data);
         },
         error: function () {
