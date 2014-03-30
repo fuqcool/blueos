@@ -104,6 +104,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
       }
     });
 
+
     if (this.resizable) {
       this.$dialog.resizable({
         resize: $.proxy(this.adjustHeight, this),
@@ -112,6 +113,8 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
         minHeight: 200,
         minWidth: 200
       });
+    } else {
+      this.$head.find('.btn-maximize').hide();
     }
 
     $('#wallpaper').append(this.$dialog);
