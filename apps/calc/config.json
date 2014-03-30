@@ -1,0 +1,8 @@
+{
+    "name": "calc",
+    "title": "Calculator",
+    "icon": "icon.png",
+    "height": 275,
+    "width": 325,
+    "resizable": false
+}

@@ -1,0 +1,7 @@
+{
+    "name": "taskmgr",
+    "title": "Task Manager",
+    "height": 450,
+    "width": 400,
+    "icon": "icon.png"
+}

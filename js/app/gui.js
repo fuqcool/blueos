@@ -92,7 +92,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
 
     this.$body.find('iframe').prop('src', this.url);
     this.$title.css({
-      'background-image': 'url(' + this.options.url + this.options.icon + ')'
+      'background-image': 'url(' + this.options.icon + ')'
     });
 
     this.$dialog.hide();
