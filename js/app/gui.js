@@ -15,7 +15,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
     '    </div>' +
     '  </div>' +
     '  <div class="dialog-body">' +
-    '    <iframe scrolling="no" frameborder="0" src="about:blank"></iframe>' +
+    '    <iframe frameborder="0" src="about:blank"></iframe>' +
     '    <div class="dialog-cover"></div>' +
     '  </div>' +
     '</div>';
@@ -92,7 +92,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
 
     this.$body.find('iframe').prop('src', this.url);
     this.$title.css({
-      'background-image': 'url(' + this.options.name + '/' + this.options.icon + ')'
+      'background-image': 'url(' + this.options.icon + ')'
     });
 
     this.$dialog.hide();
@@ -104,6 +104,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
       }
     });
 
+
     if (this.resizable) {
       this.$dialog.resizable({
         resize: $.proxy(this.adjustHeight, this),
@@ -112,6 +113,8 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
         minHeight: 200,
         minWidth: 200
       });
+    } else {
+      this.$head.find('.btn-maximize').hide();
     }
 
     $('#wallpaper').append(this.$dialog);
