@@ -38,8 +38,14 @@ ferret.module('blueos.effect.layer', function (require, exports, module) {
 
   function updateIndex() {
     var counter = 0;
-    ferret.forEach(layers, function (l) {
-      $(l).css({ "z-index": BASE + counter });
+    ferret.forEach(layers, function (layer, i) {
+      $(layer).css({ "z-index": BASE + counter });
+      if (i === layers.length - 1) {
+        $(layer).addClass('front');
+      } else {
+        $(layer).removeClass('front');
+      }
+
       counter++;
     });
   }
