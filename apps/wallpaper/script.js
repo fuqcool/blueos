@@ -12,7 +12,7 @@
   function layout () {
     var totalWidth = $('body').width();
     var imgWidth = totalWidth * 0.28;
-    var margin = (totalWidth * 0.16 - 15) / 6.01;
+    var margin = (totalWidth * 0.16 - 20) / 6.01;
 
     $('.arrange img').outerWidth(imgWidth);
     $('.arrange img').css({
