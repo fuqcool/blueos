@@ -1,9 +1,40 @@
 (function () {
+  blueos.wallpaper.getAll(function (imgs) {
+    render(imgs);
+  });
+
+  function render(imgs) {
+    var html = '';
+
+    $.each(imgs, function (i, img) {
+      html += '<img src="' + img.url + '"></img>';
+    });
+
+    $('.arrange').html(html);
+    layout();
+
+    $('.arrange img').each(function (i, el) {
+      var current = blueos.wallpaper.get();
+      var $img = $(el);
+
+      if (getBaseNamse(current) === getBaseNamse($img.attr('src'))) {
+        $img.addClass('selected');
+      }
+    });
+  }
+
+  function getBaseNamse(path) {
+    var parts = path.split('/');
+    return parts[parts.length - 1];
+  }
+
   var BORDER_WIDTH = 3;
 
   $('body').on('click', '.arrange img', function () {
     var el = $(this);
-    blueos.wallpaper.setBackground(el.prop('src'));
+    var url = el.prop('src');
+    blueos.wallpaper.set(url);
+    blueos.wallpaper.save(url);
 
     $('.arrange img').removeClass('selected');
     el.addClass('selected');
@@ -19,8 +50,6 @@
       margin: margin
     });
   }
-
-  layout();
 
   $(window).resize(layout);
 }());

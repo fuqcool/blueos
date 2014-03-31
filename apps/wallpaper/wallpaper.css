@@ -15,6 +15,7 @@ body {
 
 .arrange img.selected {
     border-color: rgb(248, 147, 80);
+    box-shadow: 0 0 20px 0px rgba(200, 200, 200, 1);
 }
 
 .arrange img:hover {
