@@ -1,26 +1,27 @@
-﻿/* This file is used for wallpaper css effects */
+﻿* { margin: 0; padding: 0 }
 
-.arrange li  {
-        margin-right:20px;
-        margin-bottom:10px;
-        display: inline-block;
-        padding: 0 0.5%;
-        float:left;
-        cursor: pointer;
-    }
-
-.tilt {
-  -webkit-transition: all 0.5s ease;
-     -moz-transition: all 0.5s ease;
-       -o-transition: all 0.5s ease;
-      -ms-transition: all 0.5s ease;
-          transition: all 0.5s ease;
+body {
+    background-image: url(bg.png);
+    background-repeat: repeat;
 }
- 
-.tilt:hover {
-  -webkit-transform: rotate(+5deg);
-     -moz-transform: rotate(+5deg);
-       -o-transform: rotate(+5deg);
-      -ms-transform: rotate(+5deg);
-          transform: rotate(+5deg);
+
+.arrange img {
+    display: inline-block;
+    cursor: pointer;
+    border: solid 3px white;
+    position: relative;
+    width: 0;
+}
+
+.arrange img.selected {
+    border-color: rgb(248, 147, 80);
+}
+
+.arrange img:hover {
+    box-shadow: 0 0 40px 0px rgba(200, 200, 200, 0.75);
+    top: -1px;
+}
+
+.clear {
+    clear: both;
 }
