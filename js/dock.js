@@ -18,7 +18,7 @@ ferret.module('blueos.dock', function (require, exports, module) {
       $icons.append(html);
       $icons.tooltip({
         position: {
-          my: 'right-7 center-32'
+          my: 'right-9 center-32'
         },
         tooltipClass: 'app-tooltip',
         show: false,
