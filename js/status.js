@@ -1,5 +1,5 @@
 ferret.module('blueos.status', function (require, exports, module) {
-  var DURATION = 230;
+  var DURATION = 200;
 
   var $status = $('<div class="sys-status"></div>');
 
@@ -27,12 +27,14 @@ ferret.module('blueos.status', function (require, exports, module) {
   function hide() {
     var height = $status.height();
 
-    $status.animate({
-      top: -height,
-      opacity: 0
-    }, DURATION, function () {
-      remove();
-    });
+    setTimeout(function () {
+      $status.animate({
+        top: -height,
+        opacity: 0
+      }, DURATION, function () {
+        remove();
+      });
+    }, 300);
   }
 
   function remove() {

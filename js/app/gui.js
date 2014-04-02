@@ -160,9 +160,10 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
 
   GUIApplication.prototype.run = function () {
     if (this.$dialog) {
-      if (!this.$dialog.is(':visible')) {
+      if (this.$dialog.is(':hidden')) {
         event.trigger('app-restore', this);
       }
+      event.trigger('layer-tofront', this.$dialog);
 
       return;
     }
