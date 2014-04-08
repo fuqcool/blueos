@@ -1,7 +1,7 @@
 ## Module
 
 ### How to write a module
-BlueOS uses a CMD-style module loader(which is developed by ourselves). Each module is a small unit of javascript, which can be *requir* and *required* by other modules. A module is typically written like this:
+BlueOS uses a CMD-style module loader(which is developed by ourselves). Each module is a small unit of javascript, which can be *require* and *required* by other modules. A module is typically written like this:
 
 ``` javascript
 ferret.module('main', function (require, exports, module) {
@@ -16,7 +16,9 @@ ferret.module('main', function (require, exports, module) {
 });
 ```
 
-The code above is the main module of BlueOS. It fetches user's preferred wallpaper from the server and update ui. This feature involves two modules: `blueos.rest.config` and `blueos.wallpaper`. The first module provides REST-ful api to fetch user's configuration by key, the later provide api to update the url of wallpaper.
+The first parameter is the name of the module, the second parameter is the initialization function of the module. The second function is invoked with three arguments. The first parameter is a function that can be used to *require* other modules; the second one is an empty object, we can use it to export properties and methods that is visible by other modules(once required); the third parameter is the parent object of the second parameter.
+
+The example above is the entry module of BlueOS. It fetches user's preferred wallpaper from the server and update ui. This feature involves two modules: `blueos.rest.config` and `blueos.wallpaper`. The first module provides REST-ful api to fetch user's configuration by key, the later provide api to update the url of wallpaper.
 
 ### Run module
 
