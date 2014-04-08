@@ -1,7 +1,7 @@
 ## Module
 
 ### How to write a module
-BlueOS uses a CMD-style module loader(which is developed by ourselves). Each module is a small unit of javascript, which can *require* and *required* by other modules. A module is typically written like this:
+BlueOS uses a CMD-style module loader(which is developed by ourselves). Each module is a small unit of javascript, which can *require* and be *required* by other modules. A module is typically written like this:
 
 ``` javascript
 ferret.module('main', function (require, exports, module) {
