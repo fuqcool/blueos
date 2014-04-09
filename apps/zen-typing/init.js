@@ -34,7 +34,7 @@ zen.init = function () {
     report = stats.report()
 
     var $result = document.querySelector('#result')
-    $result.innerHTML = 'Word per Minute: ' + report.wpm + ', Success Rate: ' + report.successRate + '%'
+    $result.innerHTML = 'Word per Minute: ' + report.wpm + 'Accuracy: ' + report.successRate + '%'
   })
 
   var articleNum = -1;
