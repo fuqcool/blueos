@@ -23,7 +23,8 @@ module.exports = function (grunt) {
       dist: {
         src: ['js/**/*.js', 'lib/bower-ferret/ferret.js'],
         options: {
-          destination: 'srcDoc'
+          dest: 'doc',
+          tutorials: 'doc/tutor'
         }
       }
     }
