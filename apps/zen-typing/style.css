@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Monaco, Consolas, Monospace;
+  width: 600px;
+  background-color: #d8d8d8;
+  margin: 0 auto;
+  font-size: 100%;
+}
+
+h2 {
+  margin: 0.5em 0;
+  font-size: 2em;
+  text-align: center;
+}
+
+#text-panel {
+  margin: 1em 0;
+}
+
+#text-panel .word {
+  display: inline-block;
+  margin: 0 0.3em;
+  padding: 2px;
+}
+
+#text-panel .word.target {
+  background-color: yellow;
+  border-radius: 3px;
+}
+
+#input-area {
+  height: 2em;
+  font-size: 1.5em;
+  padding: 5px;
+  width: 100%;
+}
+
+#input-area.error {
+  background-color: rgb(246, 153, 153);
+}
+
+#btn-start {
+  display: block;
+  text-align: center;
+  height: 75px;
+  width: 100%;
+  font-size: 1.5em;
+  margin: 1em 0;
+}
+
+#typing-panel {
+  display: none;
+}
+
+#result {
+  margin: 1em 0;
+}
