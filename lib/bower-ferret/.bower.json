@@ -1,0 +1,19 @@
+{
+  "name": "ferret.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib",
+    "spec"
+  ],
+  "homepage": "https://github.com/fuqcool/bower-ferret",
+  "_release": "9ffe17e9c1",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "9ffe17e9c15c8c4fc4e7b730a67d7748a8086f0c"
+  },
+  "_source": "git://github.com/fuqcool/bower-ferret.git",
+  "_target": "*",
+  "_originalSource": "bower-ferret"
+}

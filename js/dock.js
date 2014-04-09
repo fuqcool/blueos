@@ -1,4 +1,11 @@
 ferret.module('blueos.dock', function (require, exports, module) {
+  /** The dock panel widget of BlueOS
+   *  @module blueos/dock
+   *  @requires blueos/app
+   *  @requires blueos/rest/app
+   *  @requires core/event
+   */
+
   var appManager = require('blueos.app');
   var appRest = require('blueos.rest.app');
   var event = require('core.event');
@@ -6,6 +13,7 @@ ferret.module('blueos.dock', function (require, exports, module) {
   var $dock = $('#dock');
   var $icons = $dock.find('.icons');
 
+  // query all app info and initialize dock panel
   appRest.query({}, function (data) {
     if (ferret.isArray(data)) {
       var html = '';
@@ -27,11 +35,13 @@ ferret.module('blueos.dock', function (require, exports, module) {
     }
   });
 
+  // start app when click on app icon
   $icons.on('click', '.appicon', function () {
     var name = $(this).attr('app-name');
     appManager.run(name);
   });
 
+  // listen for app-minimize event, and hide app to dock
   event.listen('app-minimize', function (app) {
     var $icon = $icons.find('[app-name=' + app.name + ']');
     var pos = $icon.position();
@@ -46,6 +56,8 @@ ferret.module('blueos.dock', function (require, exports, module) {
     });
   });
 
+
+  // listen for app-restore event, and show app from dock
   event.listen('app-restore', function (app) {
     var $icon = $icons.find('[app-name=' + app.name + ']');
     var pos = $icon.position();
@@ -60,6 +72,8 @@ ferret.module('blueos.dock', function (require, exports, module) {
     }, 250);
   });
 
+  // listen for app-run/app-terminate event and toggle `running` class
+  // on the corresponding app icon
   event.listen('app-run', function (app) {
     $icons.find('[app-name=' + app.name + ']').addClass('running');
   });

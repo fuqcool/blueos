@@ -8,8 +8,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    concat: {
-    },
     less: {
       css: {
         files: { 'css/blueos.css': 'less/*.less' }
@@ -20,6 +18,15 @@ module.exports = function (grunt) {
         files: 'less/*.less',
         tasks: ['less']
       }
+    },
+    jsdoc: {
+      dist: {
+        src: ['js/**/*.js', 'lib/bower-ferret/ferret.js'],
+        options: {
+          dest: 'doc',
+          tutorials: 'doc/tutor'
+        }
+      }
     }
   });
 
@@ -27,4 +34,5 @@ module.exports = function (grunt) {
   // grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-jsdoc');
 };
