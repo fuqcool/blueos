@@ -1,5 +1,14 @@
 ferret.module('blueos.rest.app', function (require, exports, module) {
-  function get(name, cb) {
+  /** rest api to manipulate user's configuration
+   *  @module blueos/rest/app
+   */
+
+
+  /** Get app information by name
+   *  @param {string} - the name of the app
+   *  @param {function} - callback function with app object as arguments
+   */
+  exports.get = function (name, cb) {
     $.ajax({
       type: 'get',
       url: 'rest/app',
@@ -14,7 +23,12 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
     });
   }
 
-  function query(data, cb) {
+  /** Query all the app infomation
+   *  @param {object} - query options
+   *  @param {function} - callback function with a list of app
+   *                      objects as arguments
+   */
+  exports.query = function (data, cb) {
     $.ajax({
       type: 'get',
       url: 'rest/app',
@@ -28,6 +42,4 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
     });
   }
 
-  exports.get = get;
-  exports.query = query;
 });

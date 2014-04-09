@@ -1,5 +1,13 @@
 ferret.module('blueos.rest.config', function (require, exports, module) {
-  function get(key, cb) {
+  /** rest api to manipulate user's configuration
+   *  @module blueos/rest/config
+   */
+
+  /** Get config by key
+   *  @param {string} - config key
+   *  @param {function} callback - callback function with config value as arguments
+   */
+  exports.get = function (key, cb) {
     $.ajax({
       type: 'get',
       url: 'rest/config',
@@ -14,21 +22,22 @@ ferret.module('blueos.rest.config', function (require, exports, module) {
     });
   }
 
-  function update(data, cb) {
+  /** Update config by object, each key/value pair will be updated
+   *  @param {object} - an object with key/value to be updated
+   *  @param {function} - callback function with server status as arguments
+   */
+  exports.update = function (data, cb) {
     $.ajax({
       type: 'update',
       url: 'rest/config',
       dataType: 'json',
       data: data,
       success: function (data) {
-        console.log('success');
+        cb('success');
       },
       error: function () {
-        console.log('error');
+        cb('error');
       }
     });
   }
-
-  exports.update = update;
-  exports.get = get;
 });

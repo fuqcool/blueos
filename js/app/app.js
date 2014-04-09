@@ -1,11 +1,23 @@
 ferret.module('blueos.app', function (require, exports, module) {
+  /** App manager
+   *  @module blueos/app
+   *  @requires core/event
+   *  @requires blueos/rest/app
+   *  @requires blueos/app/GUIApplication
+   */
+
   var event = require('core.event');
   var appRest = require('blueos.rest.app');
   var GUIApplication = require('blueos.app.GUIApplication');
 
   var appCache = {};
 
-  function run(name, options) {
+  /** Run an application
+   *  @param {string} - the name of the application
+   *  @param {object} - extra options passed to app constructor
+   *  @fires app-run
+   */
+  exports.run = function (name, options) {
     if (appCache[name]) {
       appCache[name].run();
       return;
@@ -25,7 +37,11 @@ ferret.module('blueos.app', function (require, exports, module) {
     });
   }
 
-  function terminate(name) {
+  /** Terminate an application
+   *  @param {string} - the name of the application to be terminated
+   *  @fires app-terminate
+   */
+  exports.terminate = function (name) {
     var app = appCache[name];
     app.terminate();
     delete appCache[name];
@@ -34,6 +50,7 @@ ferret.module('blueos.app', function (require, exports, module) {
     event.trigger('app-terminate', app);
   }
 
+  // create an app instance
   function makeApp(options) {
     var app;
 
@@ -45,11 +62,11 @@ ferret.module('blueos.app', function (require, exports, module) {
     }
   }
 
-  function getRunningApps() {
+  /** Get all running apps
+   *  @returns {object} a dictionary of app name/instance
+   */
+  exports.getRunningApps = function () {
     return appCache;
   }
 
-  exports.run = run;
-  exports.terminate = terminate;
-  exports.getRunningApps = getRunningApps;
 });
