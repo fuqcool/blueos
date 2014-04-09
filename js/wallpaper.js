@@ -1,4 +1,10 @@
 ferret.module('blueos.wallpaper', function (require, exports, module) {
+  /** Wallpaper module, provide apis to manage the wallpaper.
+   *  @module blueos/wallpaper
+   *  @requires blueos/rest/file
+   *  @requires blueos/rest/config
+   */
+
   var file = require('blueos.rest.file');
   var config = require('blueos.rest.config');
 
