@@ -1,0 +1,10 @@
+{
+  "name": "ferret.js",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib",
+    "spec"
+  ]
+}
