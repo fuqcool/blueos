@@ -21,12 +21,12 @@ Each time when a wallpaper is selected, its system catches the image URL by the 
 
 ### References:
 The wallpaper images are from the following source:
-Maple: www.1hdwallpapers.com
-Horse: www.wallike.com
-Baby: www.mi9.com
-Fish: www.wallpaperstock.net
-Map: www.wallconvert.com
-Moon: www.hdw.eweb4.com
-Waterfall: www.hddesktopbackgrounds.us
-Wood: www.hqwallbase.com
-Winter: www.wall-pix.net
+- Maple: www.1hdwallpapers.com
+- Horse: www.wallike.com
+- Baby: www.mi9.com
+- Fish: www.wallpaperstock.net
+- Map: www.wallconvert.com
+- Moon: www.hdw.eweb4.com
+- Waterfall: www.hddesktopbackgrounds.us
+- Wood: www.hqwallbase.com
+- Winter: www.wall-pix.net
