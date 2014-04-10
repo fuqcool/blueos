@@ -164,9 +164,10 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
       that.$dialog.css(that.initPos());
       that.$dialog.show();
       that.adjustHeight();
+
       if (that.options.maximize) {
         setTimeout(function () {
-          that.maximize();
+          that.$head.find('.btn-maximize').trigger('click');
         }, 15);
       }
 
@@ -184,8 +185,8 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
   GUIApplication.prototype.initPos = function () {
     var $body = $('body');
     var pos = {
-      left: $body.width() * 0.2,
-      top: $body.height() * 0.2
+      left: $body.width() * 0.15,
+      top: $body.height() * 0.15
     };
 
     return pos;
@@ -322,6 +323,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
     this.$dialog.draggable('disable');
     this.$dialog.resizable('disable');
     this.$dialog.css('opacity', '1');
+    this.$dialog.find('.ui-resizable-handle.ui-icon').hide();
   };
 
   /** Enable dragging and resizing
@@ -330,6 +332,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
   GUIApplication.prototype.enable = function () {
     this.$dialog.draggable('enable');
     this.$dialog.resizable('enable');
+    this.$dialog.find('.ui-resizable-handle.ui-icon').show();
   };
 
   module.exports = GUIApplication;
