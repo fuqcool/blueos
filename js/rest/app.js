@@ -3,7 +3,6 @@ ferret.module('blueos.rest.app', function (require, exports, module) {
    *  @module blueos/rest/app
    */
 
-
   /** Get app information by name
    *  @param {string} - the name of the app
    *  @param {function} - callback function with app object as arguments
