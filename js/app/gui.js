@@ -164,6 +164,11 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
       that.$dialog.css(that.initPos());
       that.$dialog.show();
       that.adjustHeight();
+      if (that.options.maximize) {
+        setTimeout(function () {
+          that.maximize();
+        }, 15);
+      }
 
       that.$dialog.animate({
         opacity: 1
