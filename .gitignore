@@ -1,6 +1,6 @@
 *~
-doc/
-!doc/tutor/
-!doc/template/
+/doc
+!/doc/tutor
+!/doc/template
 node_modules/
-css/
+/css
