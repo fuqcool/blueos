@@ -1,4 +1,6 @@
 *~
 doc/
+!doc/tutor/
+!doc/template/
 node_modules/
 css/
