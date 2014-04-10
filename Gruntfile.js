@@ -24,7 +24,9 @@ module.exports = function (grunt) {
         src: ['js/**/*.js', 'lib/bower-ferret/ferret.js'],
         options: {
           dest: 'doc',
-          tutorials: 'doc/tutor'
+          tutorials: 'doc/tutor',
+          configure: 'conf.json'
+          // template: 'doc/template'
         }
       }
     }
