@@ -329,6 +329,7 @@ article.gfm pre code {
   padding: 0;
   white-space: pre;
   border: none;
+  overflow-x: auto;
   background: transparent;
 }
 article.gfm .highlight pre {
