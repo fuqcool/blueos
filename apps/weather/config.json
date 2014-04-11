@@ -3,5 +3,6 @@
     "title": "Weather",
     "height": 400,
     "width": 430,
-    "icon": "icon.png"
+    "icon": "icon.png",
+    "resizable": false
 }
