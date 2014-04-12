@@ -12,6 +12,7 @@ ferret.module('blueos.dock', function (require, exports, module) {
 
   var $dock = $('#dock');
   var $icons = $dock.find('.icons');
+  var $shutdown = $dock.find('i.shutdown');
 
   // query all app info and initialize dock panel
   appRest.query({}, function (data) {
@@ -39,6 +40,12 @@ ferret.module('blueos.dock', function (require, exports, module) {
   $icons.on('click', '.appicon', function () {
     var name = $(this).attr('app-name');
     appManager.run(name);
+  });
+
+  $shutdown.click(function () {
+    if (confirm("Are you sure you want to shutdown BlueOS?")) {
+      window.open('','_self').close();
+    }
   });
 
   // listen for app-minimize event, and hide app to dock

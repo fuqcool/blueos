@@ -1,7 +1,5 @@
-## Date and Time:
-
-### Functionality: 
-Our BlueOS will always display date and time information on the bottom of the left launch bar, 
+### Functionality:
+Our BlueOS will always display date and time information on the bottom of the left launch bar,
 including month, date, weekday, and current time.
 
 ### Behind the Scene:

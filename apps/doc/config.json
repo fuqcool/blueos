@@ -1,0 +1,10 @@
+{
+  "name": "doc",
+  "title": "Documentation",
+  "icon": "icon.png",
+  "height": 450,
+  "width": 600,
+  "resizable": true,
+  "url": "./doc/",
+  "maximize": true
+}

@@ -6,6 +6,13 @@ module.exports = function (grunt) {
           port: 8000,
           keepalive: true
         }
+      },
+      doc: {
+        options: {
+          port: 8081,
+          keepalive: true,
+          base: 'doc/'
+        }
       }
     },
     less: {
@@ -17,6 +24,10 @@ module.exports = function (grunt) {
       css: {
         files: 'less/*.less',
         tasks: ['less']
+      },
+      doc: {
+        files: ['doc/template/*.tmpl', 'doc/tutor/*.md', 'doc/tutor/*.json'],
+        tasks: ['jsdoc']
       }
     },
     jsdoc: {
@@ -24,14 +35,14 @@ module.exports = function (grunt) {
         src: ['js/**/*.js', 'lib/bower-ferret/ferret.js'],
         options: {
           dest: 'doc',
-          tutorials: 'doc/tutor'
+          tutorials: 'doc/tutor',
+          configure: 'conf.json'
         }
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-connect');
-  // grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-jsdoc');

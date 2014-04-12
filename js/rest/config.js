@@ -14,10 +14,10 @@ ferret.module('blueos.rest.config', function (require, exports, module) {
       dataType: 'text',
       data: { key: key },
       success: function (data) {
-        cb(data);
+        cb && cb(data);
       },
       error: function () {
-        cb(null);
+        cb && cb(null);
       }
     });
   }
@@ -33,10 +33,10 @@ ferret.module('blueos.rest.config', function (require, exports, module) {
       dataType: 'json',
       data: data,
       success: function (data) {
-        cb('success');
+        cb && cb('success');
       },
       error: function () {
-        cb('error');
+        cb && cb('error');
       }
     });
   }

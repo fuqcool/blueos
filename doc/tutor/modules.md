@@ -1,5 +1,3 @@
-## Module
-
 ### How to write a module
 BlueOS uses a CMD-style module loader(which is developed by ourselves). Each module is a small unit of javascript, which can *require* and be *required* by other modules. A module is typically written like this:
 

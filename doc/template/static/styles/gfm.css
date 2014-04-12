@@ -1,0 +1,357 @@
+article.gfm body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px;
+}
+article.gfm body > *:first-child {
+  margin-top: 0 !important;
+}
+article.gfm body > *:last-child {
+  margin-bottom: 0 !important;
+}
+article.gfm a {
+  color: #4183C4;
+}
+article.gfm a.absent {
+  color: #cc0000;
+}
+article.gfm a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+article.gfm h1,
+article.gfm h2,
+article.gfm h3,
+article.gfm h4,
+article.gfm h5,
+article.gfm h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative;
+}
+article.gfm h1:hover a.anchor,
+article.gfm h2:hover a.anchor,
+article.gfm h3:hover a.anchor,
+article.gfm h4:hover a.anchor,
+article.gfm h5:hover a.anchor,
+article.gfm h6:hover a.anchor {
+  background: url("../../images/modules/styleguide/para.png") no-repeat 10px center;
+  text-decoration: none;
+}
+article.gfm h1 tt,
+article.gfm h1 code {
+  font-size: inherit;
+}
+article.gfm h2 tt,
+article.gfm h2 code {
+  font-size: inherit;
+}
+article.gfm h3 tt,
+article.gfm h3 code {
+  font-size: inherit;
+}
+article.gfm h4 tt,
+article.gfm h4 code {
+  font-size: inherit;
+}
+article.gfm h5 tt,
+article.gfm h5 code {
+  font-size: inherit;
+}
+article.gfm h6 tt,
+article.gfm h6 code {
+  font-size: inherit;
+}
+article.gfm h1 {
+  font-size: 28px;
+  color: black;
+}
+article.gfm h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black;
+}
+article.gfm h3 {
+  font-size: 18px;
+}
+article.gfm h4 {
+  font-size: 16px;
+}
+article.gfm h5 {
+  font-size: 14px;
+}
+article.gfm h6 {
+  color: #777777;
+  font-size: 14px;
+}
+article.gfm p,
+article.gfm blockquote,
+article.gfm ul,
+article.gfm ol,
+article.gfm dl,
+article.gfm li,
+article.gfm table,
+article.gfm pre {
+  margin: 15px 0;
+}
+article.gfm hr {
+  background: transparent url("../../images/modules/pulls/dirty-shade.png") repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+article.gfm body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+article.gfm body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+article.gfm body > h1:first-child + h2 {
+  margin-top: 0;
+  padding-top: 0;
+}
+article.gfm body > h3:first-child,
+article.gfm body > h4:first-child,
+article.gfm body > h5:first-child,
+article.gfm body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+article.gfm a:first-child h1,
+article.gfm a:first-child h2,
+article.gfm a:first-child h3,
+article.gfm a:first-child h4,
+article.gfm a:first-child h5,
+article.gfm a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+article.gfm h1 p,
+article.gfm h2 p,
+article.gfm h3 p,
+article.gfm h4 p,
+article.gfm h5 p,
+article.gfm h6 p {
+  margin-top: 0;
+}
+article.gfm li p.first {
+  display: inline-block;
+}
+article.gfm ul,
+article.gfm ol {
+  padding-left: 30px;
+}
+article.gfm ul :first-child,
+article.gfm ol :first-child {
+  margin-top: 0;
+}
+article.gfm ul :last-child,
+article.gfm ol :last-child {
+  margin-bottom: 0;
+}
+article.gfm dl {
+  padding: 0;
+}
+article.gfm dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+article.gfm dl dt:first-child {
+  padding: 0;
+}
+article.gfm dl dt > :first-child {
+  margin-top: 0;
+}
+article.gfm dl dt > :last-child {
+  margin-bottom: 0;
+}
+article.gfm dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+article.gfm dl dd > :first-child {
+  margin-top: 0;
+}
+article.gfm dl dd > :last-child {
+  margin-bottom: 0;
+}
+article.gfm blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777;
+}
+article.gfm blockquote > :first-child {
+  margin-top: 0;
+}
+article.gfm blockquote > :last-child {
+  margin-bottom: 0;
+}
+article.gfm table {
+  padding: 0;
+}
+article.gfm table tr {
+  border-top: 1px solid #cccccc;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+article.gfm table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+article.gfm table tr th {
+  font-weight: bold;
+  border: 1px solid #cccccc;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+article.gfm table tr td {
+  border: 1px solid #cccccc;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+article.gfm table tr th :first-child,
+article.gfm table tr td :first-child {
+  margin-top: 0;
+}
+article.gfm table tr th :last-child,
+article.gfm table tr td :last-child {
+  margin-bottom: 0;
+}
+article.gfm img {
+  max-width: 100%;
+}
+article.gfm span.frame {
+  display: block;
+  overflow: hidden;
+}
+article.gfm span.frame > span {
+  border: 1px solid #dddddd;
+  display: block;
+  float: left;
+  overflow: hidden;
+  margin: 13px 0 0;
+  padding: 7px;
+  width: auto;
+}
+article.gfm span.frame span img {
+  display: block;
+  float: left;
+}
+article.gfm span.frame span span {
+  clear: both;
+  color: #333333;
+  display: block;
+  padding: 5px 0 0;
+}
+article.gfm span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+article.gfm span.align-center > span {
+  display: block;
+  overflow: hidden;
+  margin: 13px auto 0;
+  text-align: center;
+}
+article.gfm span.align-center span img {
+  margin: 0 auto;
+  text-align: center;
+}
+article.gfm span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+article.gfm span.align-right > span {
+  display: block;
+  overflow: hidden;
+  margin: 13px 0 0;
+  text-align: right;
+}
+article.gfm span.align-right span img {
+  margin: 0;
+  text-align: right;
+}
+article.gfm span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left;
+}
+article.gfm span.float-left span {
+  margin: 13px 0 0;
+}
+article.gfm span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right;
+}
+article.gfm span.float-right > span {
+  display: block;
+  overflow: hidden;
+  margin: 13px auto 0;
+  text-align: right;
+}
+article.gfm code,
+article.gfm tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+article.gfm pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  overflow-x: auto;
+  background: transparent;
+}
+article.gfm .highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+article.gfm pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+article.gfm pre code,
+article.gfm pre tt {
+  background-color: transparent;
+  border: none;
+}

@@ -1,4 +1,3 @@
-## Interactions between apps
 We use events to loosely couple one module from another. `blueos.event` is massively used across the project code. It provides two main methods:
 
 - `listen(eventName, handler)`
