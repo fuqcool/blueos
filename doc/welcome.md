@@ -1,7 +1,9 @@
 # BlueOS:
 
 Developer: 
+
   Qiang Fu (fuqcool@gmail.com)
+  
   Yang Ye (yeyang1990@gmail.com)
 
 Welcome to BlueOS! 
