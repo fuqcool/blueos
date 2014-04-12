@@ -126,6 +126,7 @@ ferret.module('blueos.app.GUIApplication', function (require, exports, module) {
 
     // make dialog draggable
     this.$dialog.draggable({
+      containment: [-3000, 0, 6000, 6000],
       start: $.proxy(this.cover, this),
       stop: $.proxy(this.uncover, this),
       create: function () {
