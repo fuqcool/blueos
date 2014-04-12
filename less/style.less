@@ -158,6 +158,23 @@ body {
             }
         }
     }
+
+    .shutdown-container {
+        position: absolute;
+        bottom: 15px;
+        left: 18px;
+
+        i.shutdown {
+            display: block;
+            font-size: 38px;
+            -webkit-transition-property: color;
+            -webkit-transition-duration: 0.5s;
+
+            &:hover {
+                color: rgb(255, 82, 82);
+            }
+        }
+    }
 }
 
 .app-tooltip {
@@ -222,3 +239,4 @@ img {
 .glyphicon-resize-full            { &:before { content: "\e096"; } }
 .glyphicon-resize-small           { &:before { content: "\e097"; } }
 .glyphicon-fullscreen             { &:before { content: "\e140"; } }
+.glyphicon-off                    { &:before { content: "\e017"; } }
