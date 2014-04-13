@@ -4,7 +4,7 @@
 Zen-Typing is a system application of BlueOS. The main purpose of this app is to provide users fun tool to check their typing speed and accuracy. Also, this application can be used as a tool to practice typing.
 
 ### User Manual:
-To start this application, the user needs to click on the Zen-Typing icon the left launch bar. 
+To start this application, the user needs to click on the Zen-Typing icon on the left launch bar. 
 Then an IFrame window will pop up on the “desktop” with a Zen-Typing application in it. 
 
 The Zen-Typing application starts with a ‘Start Typing’ button shown in the middle. If the user clicks on the button,
