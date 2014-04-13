@@ -16,7 +16,7 @@ the ‘X’ button on the top-right of the frame.
 ### Behind the Scene:
 Here is some important high-level approach of the application procedure that we think is worth mentioning: Task Manager
 starts by calling `blueos.app.getRunningApps()` function to get all the running apps, and then get the app name and type,
-prints them on the screen. It also has event listener to capture newly opened apps and to append them on the GUI. If the 
+prints them on the screen. It also has event listener to capture newly opened apps and to append them onto the GUI. If the 
 user clicks on the terminate button for a particular app, the `blueos.app.terminate(name)` will be triggered, and that app
 will be terminated.
 
