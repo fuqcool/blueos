@@ -1,4 +1,4 @@
 *~
-/doc
 node_modules/
-/css
+/client/lib/
+!/client/lib/bower-ferret

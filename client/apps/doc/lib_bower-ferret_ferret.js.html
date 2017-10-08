@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: lib/bower-ferret/ferret.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/custom.css">
+    <link type="text/css" rel="stylesheet" href="styles/gfm.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: lib/bower-ferret/ferret.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @namespace ferret */
+
+(function () {
+  // module buffer
+  var modules = {};
+
+  // module init functions
+  var moduleFns = {};
+
+  /** Define a new module
+   *  @param {string} - module name
+   *  @param {function} - constructor of the module
+   *  @throws Will throw an error if first parameter is not a string
+   *  @throws Will throw an error if second parameter is not a function
+   *  @memberof ferret
+   */
+  function module(name, cb) {
+    if (!ferret.isString(name)) {
+      console.error('module name should be a string:', name);
+    }
+
+    if (!ferret.isFunction(cb)) {
+      console.error('module consructor should be a function:', name);
+    }
+
+    moduleFns[name] = cb;
+  }
+
+  /** Get the instance of a module
+   *  @param {string} - module name
+   *  @returns {Any} the module instance
+   *  @memberof ferret
+   */
+  function require(name) {
+    var result;
+
+    if (modules[name]) {
+      result = modules[name].exports;
+    } else {
+      result = loadModule(name);
+    }
+
+    return result;
+  }
+
+  /** load the module with given name */
+  function loadModule(name) {
+    if (moduleFns[name]) {
+      var m = { exports: {} };
+      modules[name] = m;
+
+      console.log('load module', name);
+      moduleFns[name](require, m.exports, m);
+
+      return modules[name].exports;
+    }
+
+    throw 'module does not exists: ' + name;
+  }
+
+  /** Remove module
+   *  @param {string} - name of the module to be removed
+   *  @param {boolean} - if true, only remove module cache, the module can be
+   *                     re-initiated when required next time; if false, will
+   *                     remove the module completely
+   *  @memberof ferret
+   */
+  function removeModule(name, cacheOnly) {
+    console.log('remove module', name);
+    cacheOnly = (cacheOnly === 'cache' ? true : false);
+
+    if (ferret.isString(name)) {
+      delete modules[name];
+
+      if (!cacheOnly) {
+        delete moduleFns[name];
+      }
+    }
+  }
+
+  /** Explicitly initialize modules
+   *  @param {string|Array} modules - module name or an array of module names
+   *  @param {function} - callback function with module instances as arugments
+   *  @throw Will throw an error if first parameter is not string or array.
+   *  @memberof ferret
+   */
+  function use(mod, cb) {
+    var list;
+    if (ferret.isArray(mod)) {
+      list = mod;
+    } else if (ferret.isString(mod)) {
+      list = [mod];
+    } else {
+      throw 'first parameter of `use` should be an array or string';
+    }
+
+    var result = [];
+    ferret.forEach(list, function (name) {
+      if (ferret.isString(name)) {
+        result.push(require(name));
+      }
+    });
+
+    if (ferret.isFunction(cb)) {
+      cb.apply(ferret, result);
+    }
+  }
+
+  var ferret = window.ferret = window.ferret || {};
+
+  ferret.module = module;
+  ferret.use = use;
+  ferret.require = require;
+  ferret.removeModule = removeModule;
+}());
+
+(function () {
+  /** Get type of given object
+   *  @param {object} obj - object
+   *  @returns {string} type of object
+   *  @memberof ferret
+   */
+  var type = function (o) {
+    if (o === null) {
+      return 'null';
+    } else if (o === undefined) {
+      return 'undefined';
+    } else if (typeof o === 'object') {
+      return _type(o);
+    } else {
+      return typeof o;
+    }
+
+    function _type(o) {
+      var typeStr = Object.prototype.toString.apply(o);
+      return typeStr.slice(8, -1).toLowerCase();
+    }
+  };
+
+  var isType = function (expect) {
+    return function (obj) {
+      return type(obj) === expect;
+    };
+  };
+
+  /** Whether object is array
+   *  @function
+   *  @memberof ferret
+   */
+  var isArray = isType('array');
+
+  /** Whether object is date
+   *  @function
+   *  @memberof ferret
+   */
+  var isDate = isType('date');
+
+  /** Whether object is function
+   *  @function
+   *  @memberof ferret
+   */
+  var isFunction = isType('function');
+
+  /** Whether object is a real object
+   *  @function
+   *  @memberof ferret
+   */
+  var isObject = function (o) {
+    return o !== null &amp;&amp; (typeof o === 'object' || typeof o === 'function');
+  };
+
+  /** Whether object is string
+   *  @function
+   *  @memberof ferret
+   */
+  var isString = isType('string');
+
+  /** Whether object is number
+   *  @function
+   *  @memberof ferret
+   */
+  var isNumber = isType('number');
+
+  /** Whether object is regexp
+   *  @function
+   *  @memberof ferret
+   */
+  var isRegExp = isType('regexp');
+
+  /** Whether object is null
+   *  @function
+   *  @memberof ferret
+   */
+  var isNull = isType('null');
+
+  /** Whether object is undefined
+   *  @function
+   *  @memberof ferret
+   */
+  var isUndefined = isType('undefined');
+
+  /** Whether object is boolean
+   *  @function
+   *  @memberof ferret
+   */
+  var isBoolean = isType('boolean');
+
+  /** Whether object is not a number
+   *  @function
+   *  @memberof ferret
+   */
+  var isNaN = function (n) {
+    // NaN is a number but not equal to itself.
+    return isNumber(n) &amp;&amp; n !== n;
+  };
+
+  var eachArray = function (a, cb, context) {
+    if (Array.prototype.forEach) {
+      a.forEach(cb, context);
+    } else {
+      for (var i = 0; i &lt; a.length; i++) {
+        cb.call(context, a[i], i, a);
+      }
+    }
+  };
+
+  var eachObject = function (obj, cb, context) {
+    for (var prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        cb.call(context, obj[prop], prop, obj);
+      }
+    }
+  };
+
+  var map = function (obj, cb, context) {
+    var result;
+
+    if (isArray(obj)) {
+      result = [];
+    } else if (isObject(obj)) {
+      result = {};
+    }
+
+    if (isFunction(cb)) {
+      forEach(obj, function (value, key) {
+        result[key] = cb.call(context, value, key, obj);
+      });
+    }
+
+    return result;
+  };
+
+  /** Iterate object/array
+   *  @param {Object|Array} - object to be iterated
+   *  @param {function} - the iterate function
+   *  @param {Object} - the context of the iterate function
+   *  @memberof ferret
+   */
+  var forEach = function (obj, cb, context) {
+    if (isArray(obj)) {
+      eachArray(obj, cb, context);
+    } else if (isObject(obj)) {
+      eachObject(obj, cb, context);
+    }
+  };
+
+  var noop = function () {};
+
+  var clone = function (obj) {
+    if (!isArray(obj) &amp;&amp; !isObject(obj)) {
+      console.log(obj);
+      return obj;
+    }
+
+    return map(obj, function (v, k) {
+      return v;
+    });
+  };
+
+  var extend = function (dest) {
+    var srcs = toArray(arguments).slice(1);
+
+    forEach(srcs, function (src) {
+      forEach(src, function (v, k) {
+        dest[k] = v;
+      });
+    });
+
+    return dest;
+  };
+
+  var defaults = function (obj) {
+    var params = toArray(arguments).slice(1);
+
+    forEach(params, function (param) {
+      forEach(param, function (v, k) {
+        if (obj[k] == null) {
+          obj[k] = v;
+        }
+      });
+    });
+
+    return obj;
+  };
+
+  var toArray = function (obj) {
+    return Array.prototype.slice.call(obj);
+  };
+
+
+  var bind = function (fn, context) {
+    var args = toArray(arguments).slice(2);
+
+    return function () {
+      fn.apply(context, args.concat(toArray(arguments)));
+    };
+  };
+
+  var ferret = window.ferret = window.ferret || {};
+
+  ferret.type = type;
+  ferret.isArray = isArray;
+  ferret.isString = isString;
+  ferret.isDate = isDate;
+  ferret.isFunction = isFunction;
+  ferret.isObject = isObject;
+  ferret.isNumber = isNumber;
+  ferret.isRegExp = isRegExp;
+  ferret.isUndefined = isUndefined;
+  ferret.isNull = isNull;
+  ferret.isBoolean = isBoolean;
+  ferret.isNaN = isNaN;
+
+  ferret.forEach = ferret.each = forEach;
+  ferret.toArray = toArray;
+  ferret.map = map;
+  ferret.noop = noop;
+  ferret.clone = clone;
+  ferret.extend = extend;
+  ferret.defaults = defaults;
+  ferret.bind = bind;
+}());
+
+ferret.module('core.event', function (require, exports, module) {
+  /** Event module
+   *  @module core/event
+   */
+
+  var events = {};
+
+  /** Listen to an event
+   *  @param {string} - the name of the event
+   *  @param {function} - event handler
+   *  @throws Will throw an error if event name is not a string
+   */
+  exports.listen = function (event, cb) {
+    if (ferret.isString(event)) {
+      if (events[event]) {
+        events[event].push(cb);
+      } else {
+        events[event] = [cb];
+      }
+    } else {
+      throw 'event should be a string: ' + event;
+    }
+
+    return exports;
+  }
+
+  /** Trigger an event
+   *  @param {string} - event name to be triggered
+   *  @returns {}
+   *  @throws Will throw an error if event name is not string
+   */
+  exports.trigger = function (event) {
+    if (ferret.isString(event)) {
+      var args = Array.prototype.slice.call(arguments, 1);
+      doTrigger(event, args);
+    } else {
+      throw 'event should be a string: ' + event;
+    }
+
+    return exports;
+  }
+
+  function doTrigger(name, args) {
+    var callbacks = events[name];
+
+    if (callbacks) {
+      ferret.forEach(callbacks, function (cb) {
+        cb.apply(null, args);
+      });
+    }
+  }
+
+  exports.clear = function () {
+    events = {};
+  }
+
+});
+
+ferret.module('core.console', function (require, exports, module) {
+    module.exports = console;
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-blueos_app.html">blueos/app</a></li><li><a href="module-blueos_app_GUIApplication.html">blueos/app/GUIApplication</a></li><li><a href="module-blueos_effect_layer.html">blueos/effect/layer</a></li><li><a href="module-blueos_rest_app.html">blueos/rest/app</a></li><li><a href="module-blueos_rest_config.html">blueos/rest/config</a></li><li><a href="module-blueos_rest_file.html">blueos/rest/file</a></li><li><a href="module-core_event.html">core/event</a></li></ul><h3>Namespaces</h3><ul><li><a href="ferret.html">ferret</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-calculator.html">App: Calculator</a></li><li><a href="tutorial-calendar.html">App: Calendar</a></li><li><a href="tutorial-datetime.html">Date and Time</a></li><li><a href="tutorial-future.html">Future of BlueOS</a></li><li><a href="tutorial-googlemap.html">App: Google Map</a></li><li><a href="tutorial-how-to-develop-app.html">How to develop applications for BlueOS</a></li><li><a href="tutorial-interact.html">Interactions between applications</a></li><li><a href="tutorial-modules.html">BlueOS modules</a></li><li><a href="tutorial-sdk.html">BlueOS SDK</a></li><li><a href="tutorial-wallpaper.html">App: Wallpaper</a></li><li><a href="tutorial-weather.html">App: Weather</a></li><li><a href="tutorial-zentype.html">App: Zen Typing</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Oct 08 2017 03:37:31 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
